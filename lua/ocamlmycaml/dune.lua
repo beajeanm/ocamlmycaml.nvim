@@ -207,7 +207,9 @@ M.setup = function(opts)
             if event.match == "OcamlMyCamlStart" then
                 -- query all workspaces for the ocamllsp client and start those DuneJobs
                 local dune_jobs = vim.g.ocamlmycaml_jobs
-                for _, job in ipairs(dune_jobs) do
+                for _, job_table in ipairs(dune_jobs) do
+                    table.remove(job_table.command, 1)
+                    local job = DuneJob:new(job_table.root_path, job_table.command)
                     job:start()
                 end
             elseif event.match == "OcamlMyCamlStop" then
