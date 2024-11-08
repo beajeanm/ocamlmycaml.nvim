@@ -20,6 +20,8 @@ M.setup = function(opts)
             lsp.switchImplIntf(buffer)
         elseif args[1] == "hole" then
             lsp.nextHole(buffer)
+        elseif args[1] == "typesearch" then
+            lsp.merlin.find_by_type()
         end
     end, {nargs = '*'})
 
