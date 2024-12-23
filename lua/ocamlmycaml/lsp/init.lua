@@ -10,7 +10,7 @@ local actions_state = require("telescope.actions.state")
 local M = {
     switchImplIntf = function(buffer)
         lsp_api.custom_methods.switchImplIntf(buffer, function(err, result)
-            if #result == 0 then
+            if result == nil or #result == 0 then
                 return
             end
             local file_uri = result[1]
